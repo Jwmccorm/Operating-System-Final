@@ -1,0 +1,7 @@
+
+Project Code/main.o
+Project Code/main.exe
+Project Code/Features/CopyFile/testCopyFile.o
+Project Code/Features/CopyFile/testCopyFile.exe
+*.exe
+*.o
