@@ -10,29 +10,35 @@
 using namespace std;
 
 int main(){
-
-    string command,remainder;
-
+    /*
+        This fist section is just for user input of the string
+    */
     cout << "Welcome! Please Input Instructions" << endl;
-
+    string userInput;
     //      Catching help command off of root
-    cin >> command;
-    if (command != "\\h"){
-        cin >> remainder;
+    getline(cin, userInput);
+    string command,remainder;
+    if (!userInput.compare("-h")){
+        command = "THIS WILL DISPLAY THE HELP OPTIONS";
+    }
+    else if (userInput.find(' ') == string::npos){
+        command  = "Invalid Command, use /h for help";
+    }else{
+        command = userInput.substr(0, userInput.find(' '));
+        remainder = userInput.substr(userInput.find(' ')+1, userInput.find('\0'));
     }
 
-    //      Commands switch statement (No switch statement for strings)
-    if  (command == "copy") copyFile();
+
+    /*
+        Bulk of the information for the problem it self, use this to link up commands.
+    */
+    if  (command == "copy") cout << copyFile(remainder);
     else if (command == "delete") deleteFile();
     else if (command == "move") moveFile();
     else if (command == "rename") renameFile();
     else if (command == "modify") textModification();
-    else if(command == "\\h"){
-        cout << "HELP";
-    }
-
     else{
-        cout << "Invalid Command use \"\\h\" for help";
+        cout << command;
     }
 
 }

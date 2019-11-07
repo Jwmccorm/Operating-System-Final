@@ -10,7 +10,6 @@ string copyFile(string command){
         return "To use the copy command:  \"copy file.extention CopyName\"";
     }
     else{
-
         bool complete;
         string originalFileName;
         string originalFileExtention;
@@ -38,13 +37,13 @@ string copyFile(string command){
             }
         }
 
-        if (spaceCount != 1){
-            return "ERROR: New File Name Can Not Contain Spaces!";
+        if (spaceCount == 0){
+            return "ERROR: Must contain a space to separate copy file name - Use \h for help!";
+        }
+        else if(spaceCount > 1){
+            return "ERROR: Only one space allowed for file names - Use \h for help!";
         }
         else if (!originalFileName.compare(newFileName)){
-                cout << originalFileName<<endl;
-            cout << newFileName << endl;
-            cout << originalFileName.compare(newFileName);
             return "ERROR: The two files can not have the same name!";
         }
         else{
@@ -52,8 +51,8 @@ string copyFile(string command){
             newFileName.append(originalFileExtention);
 
             //TODO: Change the finished file that was appended to a string stream
-            ifstream  src("test.txt", ios::binary);
-            ofstream  dst("swag.txt",   ios::binary);
+            ifstream  src("C:\\Users\\James\\Documents\\GitHub\\Operating-System-Final\\Project Code\\Features\\CopyFile\\text.txt", ios::binary);
+            ofstream  dst("C:\\Users\\James\\Documents\\GitHub\\Operating-System-Final\\Project Code\\Features\\CopyFile\\swag.txt",   ios::binary);
             dst << src.rdbuf();
             return originalFileName + " now has a copy called " + newFileName;
 
