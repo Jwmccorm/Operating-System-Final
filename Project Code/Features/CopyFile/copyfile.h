@@ -50,6 +50,8 @@ string copyFile(string command){
         else{
             originalFileName.append(originalFileExtention);
             newFileName.append(originalFileExtention);
+
+            //TODO: Change the finished file that was appended to a string stream
             ifstream  src("test.txt", ios::binary);
             ofstream  dst("swag.txt",   ios::binary);
             dst << src.rdbuf();
