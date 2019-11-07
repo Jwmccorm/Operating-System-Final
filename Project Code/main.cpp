@@ -28,7 +28,6 @@ int main(){
         remainder = userInput.substr(userInput.find(' ')+1, userInput.find('\0'));
     }
 
-
     /*
         Bulk of the information for the problem it self, use this to link up commands.
     */
@@ -38,7 +37,7 @@ int main(){
     else if (command == "rename") renameFile();
     else if (command == "modify") textModification();
     else{
-        cout << command;
+        cout << "Invalid Command, use /h for help";
     }
 
 }
