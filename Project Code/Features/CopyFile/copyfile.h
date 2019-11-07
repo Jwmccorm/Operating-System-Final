@@ -6,7 +6,7 @@ using namespace std;
 
 string copyFile(string command){
     int i;
-    if (!command.compare("\h")){
+    if (!command.compare("-h")){
         return "To use the copy command:  \"copy file.extention CopyName\"";
     }
     else{
@@ -38,13 +38,13 @@ string copyFile(string command){
         }
 
         if (spaceCount == 0){
-            return "ERROR: Must contain a space to separate copy file name - Use \h for help!";
+            return "ERROR: Must contain a space to separate copy file name - Use \"copy -h\" for help!";
         }
         else if(spaceCount > 1){
-            return "ERROR: Only one space allowed for file names - Use \h for help!";
+            return "ERROR: Only one space allowed for file names - Use  \"copy -h\" for help!";
         }
         else if (!originalFileName.compare(newFileName)){
-            return "ERROR: The two files can not have the same name!";
+            return "ERROR: The two files can not have the same name! - Use  \"copy -h\" for help!";
         }
         else{
             originalFileName.append(originalFileExtention);
