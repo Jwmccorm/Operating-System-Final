@@ -4,7 +4,7 @@
 using namespace std;
 
 
-string copyFile(string command){
+string copyFile(string command, string directoryString){
     int i;
     if (!command.compare("-h")){
         return "To use the copy command:  \"copy file.extention CopyName\"";
@@ -47,14 +47,13 @@ string copyFile(string command){
             return "ERROR: The two files can not have the same name! - Use  \"copy -h\" for help!";
         }
         else{
-            originalFileName.append(originalFileExtention);
-            newFileName.append(originalFileExtention);
-
-            //TODO: Change the finished file that was appended to a string stream
-            ifstream  src("C:\\Users\\James\\Documents\\GitHub\\Operating-System-Final\\Project Code\\Features\\CopyFile\\text.txt", ios::binary);
-            ofstream  dst("C:\\Users\\James\\Documents\\GitHub\\Operating-System-Final\\Project Code\\Features\\CopyFile\\swag.txt",   ios::binary);
+            originalFileName =  directoryString +  "\\"+ originalFileName + originalFileExtention;
+            newFileName= directoryString + "\\"+ newFileName + originalFileExtention;
+            cout << newFileName << endl;
+            ifstream  src(originalFileName.c_str(), ios::binary);
+            ofstream  dst(newFileName.c_str(),   ios::binary);
             dst << src.rdbuf();
-            return originalFileName + " now has a copy called " + newFileName;
+            return "";//originalFileName + " now has a copy called " + newFileName << endl;
 
         }
 
