@@ -1,30 +1,8 @@
-
 #include<iostream>
 #include<dirent.h>
 #include<stdlib.h>
 #include <cstring>
 using namespace std;
-
-int myRename(char curName[], char nName[])
-{
-    int i;
-    for(int i = 0; i<strlen(curName); i++)
-    {
-        if(i<strlen(nName))
-            curName[i] = nName[i];
-        else
-            curName[i] = '\0';
-    }
-    cout<<curName<<endl;
-    cout<<nName<<endl;
-    if(strcmp(curName, nName) == 0)
-    {
-        return 0;
-    }
-    else
-        return -1;
-
-}
 
 // function to rename the desired file in the current directory
 void renameFile()
@@ -66,53 +44,41 @@ void renameFile()
     // prompt to user to give the name of the file they wish to rename
     cout<<"Please enter the name of the file you wish to rename."<<endl;
     cin>>currentName;
-    // access return is -ve, i.e. file doesn't exist
-    while(access(currentName, 0)== -1)
-        {
-            cout<< currentName<<" The file does not exist.\nPlease enter valid file name to continue OR \nEnter Return to go back to main menu.\n"<<endl;
-            cin>>currentName;
-            // return if user want to return
-            if (strcmp(currentName,"Return")==0)
-                return;
+    // tempValue stores the return value of access function
+    tempValue = access(currentName, 0);
+    // if tempVlaue is -ve, file doesn't exist so getting the valid file name
+    if(tempValue<0)
+    {
+        // if tempValue is -ve, i.e. file doesn't exist
+        while(tempValue<0)
+            {
+                cout<< currentName<<" The file does not exist.\nPlease enter valid file name to continue OR \nEnter Return to go back to main menu.\n"<<endl;
+                cin>>currentName;
+                // return if user want to return
+                if ((strcmp(currentName,"Return"))==0)
+                    return;
+                tempValue = access(currentName, 0);
             }
+    }
     // if file exists then renaming
-    if(access(currentName, 0)!= -1)
+    else
     {
         cout<<"Please enter the new name for the file named "<<currentName<<endl;
         cin>>newName;
-        //if acess return is not -ve i.e. this file name already exists in the dir so getting another desired name
-         while(access(newName, 0)!= -1)
+        // tempValue storing the return val of access function
+        tempValue = access(newName, 0);
+        //if tempValue is not -ve i.e. this file name already exists in the dir so getting another desired name
+         while(tempValue>=0)
             {
-                cout<<newName<<" already exists.\nPlease enter valid file name to continue OR \nPlease Enter Return to go back to main menu."<<endl;
+                cout<<newName<<" This file name already exists.\nPlease enter valid file name to continue OR \nPlease Enter Return to go back to main menu."<<endl;
                 cin>>newName;
                 // return if user want to return
                 if ((strcmp(newName,"Return"))==0)
                     return;
+                tempValue = access(currentName, 0);
             }
         // storing return value of rename function
         tempInt = rename(currentName, newName);
-        /*
-        //tempInt = myRename(currentName, newName);----- my rename is not working why
-        //?????????????????????????????????
-        OR even here without calling function name
-
-    for(int i = 0; i<strlen(currentName); i++)
-    {
-        if(i<strlen(newName))
-            currentName[i] = newName[i];
-        else
-            currentName[i] = '\0';
-    }
-    cout<<currentName<<endl;
-    cout<<newName<<endl;
-    if(strcmp(currentName, newName) == 0)
-    {
-        tempInt = 0;
-    }
-    else
-        tempInt = -1;
-        */
-
         // if tempInt is 0, i.e. file successfully renamed
         if(tempInt == 0)
         {
@@ -133,4 +99,13 @@ void renameFile()
         }
 
     }
+
+
+
+
+
+
+
+
+
 }
