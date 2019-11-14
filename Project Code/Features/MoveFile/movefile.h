@@ -77,15 +77,7 @@ string moveFile(string command, string path){
     }
 }
 
-    //changeDirectory(path);
-//    char[BUFFER] destination;
-//    char[BUFFER] fileName;
 
-//    cout << "Destination path: " << endl;
-//    cin >> destination;
-//    cout << "File: " << endl;
-//    cin >> fileName;
-//
 //    dirp = opendir(".");
 //
 //    while (dirp) {
