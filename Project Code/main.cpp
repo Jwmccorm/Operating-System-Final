@@ -43,7 +43,7 @@ int main(){
             if(!userInput.compare("dir")){
                 command = "dir";
             }else{
-                cout << "Invalid Command, you need spaces, use -h for help" << endl;
+                cout << "Invalid Command, you need spaces, use /h for help" << endl;
                 continue;
             }
         }else{
@@ -63,7 +63,7 @@ int main(){
         else if (!command.compare("cd"))  path = directoryChange(remainder, path);
         else if (!command.compare("dir")) changeDirectory(path);
         else{
-            cout << "Invalid Command, you need spaces, use -h for help" << endl;
+            cout << "Invalid Command, you need spaces, use /h for help";
         }
 
     }
