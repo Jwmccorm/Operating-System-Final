@@ -56,7 +56,7 @@ int main(){
         */
         if  (!command.compare("copy")) cout << copyFile(remainder, path);
         else if (!command.compare("delete")) deleteFile();
-        else if (!command.compare("move")) moveFile();
+        else if (!command.compare("move")) moveFile(remainder, path);
         else if (!command.compare("rename")) renameFile();
         else if (!command.compare("modify")) textModification();
         else if (!command.compare("-h"));
