@@ -6,8 +6,8 @@ using namespace std;
 
 string moveFile(string command, string path){
 
-    if(!command.compare("-h")) {
-        return "\tTo use the move command: \"move file.extension\"\n\tThen cd to destination directory...\n";
+    if(!command.compare("-h ")) {
+        return "\tTo use the move command: \"move file.extension \"\n\tThen cd to destination directory...\n";
     }
 
     int i = 0;
@@ -39,8 +39,9 @@ string moveFile(string command, string path){
     }
 
     else{
-        cout << "Navigate to where you'd like to move the file..." << endl;
-        cout << "Enter \"here\" to complete operation" << endl;
+        cout << "\t1. Navigate to where you'd like to move the file: using \"cd ..\"" << endl;
+        cout << "\t2. Enter \"here\" to complete operation or" << endl;
+        cout << "\t   Enter \"cancel\" to cancel operation" << endl;
 
         string localPath = path;
         DIR *dr = opendir(localPath.c_str());
@@ -60,6 +61,7 @@ string moveFile(string command, string path){
             if (!action.compare("cd"))  localPath = directoryChange(remainder, localPath);
             else if (!action.compare("dir")) changeDirectory(localPath);
             else if (!action.compare("/h")) cout << "\"Some help\"";
+            else if (!action.compare("cancel")) return "Operation Cancelled\n";
             else if (!action.compare("here")) {
                     /*
                             The copying and the pasting of the file will go here
