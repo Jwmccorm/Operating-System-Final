@@ -25,43 +25,32 @@ int myRename(char curName[], char nName[])
         return -1;
 
 }
+void checker(char curName[])
+{
+    int i, temp ;
+    string str = " ";
+    for(int i = 0; i<strlen(curName); i++)
+    {
+        if(int(curName[i])== 46)
+            temp = i;
+        if(i >= temp)
+        {
+            curName[i] = '\0';
+        }
+
+    }
+
+}
 
 // function to rename the desired file in the current directory
 void renameFile()
 {
     // local declarations and assignments
-     int counter = 0, tempValue, tempInt, index = 30;
+     int tempInt, index = 30;
      char tempArray[index], temp1[index];
-    // pointer to directory
-    DIR *currentWorkingDir;
-    // structure which has field char d_name[]
-    struct dirent *directoryReading;
-    // array to hold the current path info
-    char dirPath[100];
-    // arrays to hold current name and new name
+        // arrays to hold current name and new name
     char currentName[index],newName[index];
-    //opening the current working directory so that we can use readdir fun to read
-    currentWorkingDir = opendir("./");
-    // checking if the current dir is empty or getcwd returns null ie no file
-    if (currentWorkingDir!= NULL && getcwd(dirPath, sizeof(dirPath)) !=NULL)
-    {
-        // printing info about dir and existing files in it
-        cout<< "We are in the following directory :\n"<<dirPath<<endl;
-        cout<< "The existing files in this directory are : "<<endl;
-        //reading and printing all the files on the screen
-        directoryReading = readdir(currentWorkingDir);
-        while(directoryReading != NULL)
-        {
-            cout<<counter <<" "<<directoryReading->d_name<<endl;
-            counter++;
-            // reading next entry in the directory
-            directoryReading = readdir(currentWorkingDir);
-        }
-        // closing the current directory after done reading
-        closedir(currentWorkingDir);
-    }
-    else
-        cout<<"Directory not found. "<<endl;
+
 
     // prompt to user to give the name of the file they wish to rename
     cout<<"Please enter the name of the file you wish to rename."<<endl;
@@ -80,6 +69,8 @@ void renameFile()
     {
         cout<<"Please enter the new name for the file named "<<currentName<<endl;
         cin>>newName;
+        checker(newName);  //??????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????
+
         //if acess return is not -ve i.e. this file name already exists in the dir so getting another desired name
          while(access(newName, 0)!= -1)
             {
@@ -91,27 +82,6 @@ void renameFile()
             }
         // storing return value of rename function
         tempInt = rename(currentName, newName);
-        /*
-        //tempInt = myRename(currentName, newName);----- my rename is not working why
-        //?????????????????????????????????
-        OR even here without calling function name
-
-    for(int i = 0; i<strlen(currentName); i++)
-    {
-        if(i<strlen(newName))
-            currentName[i] = newName[i];
-        else
-            currentName[i] = '\0';
-    }
-    cout<<currentName<<endl;
-    cout<<newName<<endl;
-    if(strcmp(currentName, newName) == 0)
-    {
-        tempInt = 0;
-    }
-    else
-        tempInt = -1;
-        */
 
         // if tempInt is 0, i.e. file successfully renamed
         if(tempInt == 0)
@@ -134,3 +104,26 @@ void renameFile()
 
     }
 }
+
+
+/*
+        //tempInt = myRename(currentName, newName);----- my rename is not working why
+        //?????????????????????????????????
+        OR even here without calling function name
+
+    for(int i = 0; i<strlen(currentName); i++)
+    {
+        if(i<strlen(newName))
+            currentName[i] = newName[i];
+        else
+            currentName[i] = '\0';
+    }
+    cout<<currentName<<endl;
+    cout<<newName<<endl;
+    if(strcmp(currentName, newName) == 0)
+    {
+        tempInt = 0;
+    }
+    else
+        tempInt = -1;
+        */
