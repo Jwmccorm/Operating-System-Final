@@ -5,6 +5,8 @@
 #include<stdio.h>
 #include<conio.h>
 
+using namespace std;
+
 int main()
 {
 
@@ -14,11 +16,12 @@ int main()
     printf("\nPlease Mention the File to Delete :");
     gets(file_name);
 
+    cout << file_name;
     status = remove(file_name);
 
     if(file_name==0)
     {
-        printf("\n File is Deleted Suxessfully ");
+        printf("\n File is Deleted Successfully ");
 
     }
     else
