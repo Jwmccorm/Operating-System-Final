@@ -7,7 +7,7 @@ using namespace std;
 string copyFile(string command, string directoryString){
     int i;
     if (!command.compare("-h")){
-        return "To use the copy command:  \"copy file.extention CopyName\"";
+        return "To use the copy command:  \"copy file.extension CopyName\"";
     }
     else{
         bool complete;
