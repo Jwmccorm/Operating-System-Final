@@ -3,16 +3,18 @@
 #include<dirent.h>
 #include<stdlib.h>
 #include <cstring>
+#include<string>
+
 using namespace std;
 
 // function returning the extension of the file dot inclusive
-string checker(char curName[])
+string checker(string curName)
 {
     // local declarations and assignments
     int i, temp, tempIndex, dotCount =0 ;
     string str;
     // for loop to find the the last dot that is the starting of extension
-    for(int i = 0; i<strlen(curName); i++)
+    for(int i = 0; i< curName.length(); i++)
     {
         // finds the dot and saves the index of the last dot in temp
         if(int(curName[i])== 46)
@@ -21,11 +23,10 @@ string checker(char curName[])
         }
     }
     // storing the extension in the string called str
-    for(i = temp; i<strlen(curName); i++)
+    for(i = temp; i<curName.length(); i++)
     {
         str = str + curName[i];
     }
-    cout<<"making sure that original extension is saved "<<str<<endl;
     return str;
 }
 // assigning the old extension if user puts the new extension as extension can't be changed
@@ -65,9 +66,57 @@ void removeExt(char curName[])
 // function to rename the desired file in the current directory
 string renameFile(string command, string path)
 {
+
+        bool complete;
+        string originalFileName;
+        string originalFileExtention;
+        string newFileName;
+        int counter = 0;
+        int spaceCount= 0;
+        int dotCount = 0;
+    int i =0;
+        for (i = 0; i < command.length(); i++){
+            if (command[i] == ' '){
+                spaceCount += 1;
+                continue;
+            }
+
+            if (dotCount > 1){
+                return "Too many dots!! use -h for help";
+            }
+            if (command[i] == '.'){
+                dotCount += 1;
+            }
+            if (spaceCount > 1){
+                return "Too many spaces, sorry please use -h for help";
+            }
+            if(spaceCount ==0 && dotCount == 0){
+                originalFileName += command[i];
+            }
+            if (spaceCount == 0 && dotCount == 1){
+                originalFileExtention += command[i];
+            }
+            if(spaceCount == 1){
+                newFileName += command[i];
+            }
+        }
+
+        //      Take this
+        string originalFileNameNameAndExt = path + "\\"+originalFileName + originalFileExtention;
+
+
+        string newFileNameNameAndExt = path + "\\"+newFileName + originalFileExtention;
+
+        /// THIS IS THE ONE WITH THE PATH . FILE NAME and EXT (OF THE OLD ONE)
+        cout << originalFileNameNameAndExt<< endl;
+
+        /// THIS IS THE NEW FILE NAME
+        cout << newFileNameNameAndExt << endl;
+
+
+
     // local declarations and assignments
     int tempInt, index = 30;
-    int i;
     if (!command.compare("-h")){
         return "To use the rename command:  \" file.extension then newname\"";
     }
@@ -81,11 +130,13 @@ string renameFile(string command, string path)
 
     // prompt to user to give the name of the file they wish to rename
     cout<<"Please enter the name of the file you wish to rename."<<endl;
-    cin>>currentName;
+    ///cin>>currentName;
     // saving the old extension to be used for new name
     cExtension = checker(currentName);
     // access return is -ve, i.e. file doesn't exist
-    while(access(currentName, 0)== -1)
+
+
+    /*while(access(currentName, 0)== -1)
         {
             cout<< currentName<<" The file does not exist.\nPlease enter valid file name to continue OR \nEnter Return to go back to main menu.\n"<<endl;
             cin>>currentName;
@@ -140,7 +191,7 @@ string renameFile(string command, string path)
                 return "";
         }
 
-    }
+    }*/
     return " ";
 }
 
