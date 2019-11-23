@@ -57,7 +57,7 @@ int main(){
         else if (!command.compare("move")) cout << moveFile(remainder, path);
         else if (!command.compare("create")) cout << createFile(remainder, path) << endl;
         else if (!command.compare("rename")) cout << renameFile(remainder, path) << endl;
-        else if (!command.compare("modify")) textModification();
+        else if (!command.compare("modify")) cout << textModification(remainder, path) << endl;
         else if (!command.compare("-h"));
         else if (!command.compare("cd"))  path = directoryChange(remainder, path);
         else if (!command.compare("dir")) changeDirectory(path);
