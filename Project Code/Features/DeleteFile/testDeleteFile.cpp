@@ -10,22 +10,7 @@ using namespace std;
 int main()
 {
 
-    int status;
-    char file_name[100];
 
-    printf("\nPlease Mention the File to Delete :");
-    gets(file_name);
-
-    cout << file_name;
-    status = remove(file_name);
-
-    if(file_name==0)
-    {
-        printf("\n File is Deleted Successfully ");
-
-    }
-    else
-        printf("\nDid you Entered the Right File Name !");
     return 0;
 
 }
