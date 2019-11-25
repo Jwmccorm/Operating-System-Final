@@ -6,7 +6,7 @@ using namespace std;
 int main(){
     cout << "Tek Subedi ID 0869016" <<endl;
     cout << "Killer Group" <<endl;
-    int counter = 0;
+    int counter = 0, i;
      // pointer to directory
     DIR *currentWorkingDir;
 
@@ -14,6 +14,7 @@ int main(){
     struct dirent *directoryReading;
     // array to hold the current path info
     char dirPath[100];
+    string path;
 
     //opening the current working directory so that we can use readdir fun to read
     currentWorkingDir = opendir("./");
@@ -25,6 +26,7 @@ int main(){
         cout<< "The existing files in this directory are : "<<endl;
         //reading and printing all the files on the screen
         directoryReading = readdir(currentWorkingDir);
+
         while(directoryReading != NULL)
         {
             cout<<counter <<" "<<directoryReading->d_name<<endl;
@@ -34,10 +36,18 @@ int main(){
         }
         // closing the current directory after done reading
         closedir(currentWorkingDir);
+
     }
     else
         cout<<"Directory not found. "<<endl;
-    renameFile();
+
+    cout<<"The path is "<<dirPath<<endl;
+    for(i = 0; i<strlen(dirPath); i++)
+    {
+        path = path + dirPath[i];
+    }
+    cout<<"str path is "<<path<<endl;
+    renameFile(" ", path);
     return 0;
 }
 
