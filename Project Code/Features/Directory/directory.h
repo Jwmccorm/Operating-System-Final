@@ -14,7 +14,7 @@ int validDir(DIR *dr){
 }
 string current_working_directory()
 {
-    char* cwd = _getcwd( 0, 0 ) ; // **** microsoft specific ****
+    char* cwd = getcwd( 0, 0 ) ; // **** microsoft specific ****
     string working_directory(cwd) ;
     free(cwd) ;
     return working_directory ;

@@ -29,21 +29,22 @@ switch(x)
 {
 case 1:
         cout<< "enter text to be inserted at the end"<<endl;
-        cin.ignore();
         getline(cin,str1);
         //cin >> str;
      outfile.open("test.txt", std::ios_base::app); // append at the end of the text
   outfile << str1;//text which gets appended
+  return "Text has been appended";
   break;
 
 case 2 :
     cout<< "enter position(counted by character) to insert new text: ";
     cin >> position;
     cout<< "enter text to be inserted at position : ";
-    cin.ignore();
     getline(cin,str2);
-   fs.seekp (position);    // I picked 3rd position from the end to add the text
+    fs.seekp (position);    // I picked 3rd position from the end to add the text
     fs.write("text.txt" ,getline(cin,str2),position);// This is the text to be inserted with how many characters to add
+    return "Text has been inserted";
+
 break;
 
 case 3:
@@ -56,7 +57,7 @@ case 4:
           outFile >> name ;
           cout << name << endl;
     }
-
+    return "";
     break;
 default :
     cout<<"Incorrect input! Please try again";

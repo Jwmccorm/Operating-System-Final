@@ -1,5 +1,6 @@
 #include<iostream>
 using namespace std;
+#include <cstdlib>
 
 #include<string>
 string textModification(string command, string path){
@@ -41,6 +42,10 @@ string textModification(string command, string path){
 
         textFileName = path + "\\" + textFileName;//add the path to the text file
 
+        FILE *file = fopen((textFileName).c_str(), "r");
+            if(!file){
+            return "Unable to find file - Use  \"copy -h\" for help!\n";
+        }
 
         string str1;// stored the user input to append
         string name;//used for displaying the text
@@ -59,19 +64,34 @@ string textModification(string command, string path){
             outfile.open(textFileName.c_str(), std::ios_base::app); // append at the end of the text
             outfile << str1;//text which gets appended
             outfile.close();
+            return "text has been appended";
         }
+
         else if (commandCatcher == "insert"){//check if the command is insert
+        string pos;
+        string finalString;
+        string userInput;
         cout<< "enter position(counted by character) to insert new text: ";//prompt user for the specific position to input the text
-        cin >> position;//take in as position
-       // cout<< "enter text to be inserted at position : ";
-        //cin.ignore();
-       // getline(cin,str2);
-        fs.seekp (position);    // I picked 3rd position from the end to add the text
-        fs.write ("Hey we added text at specific position ",position);// This is the text to be inserted with how many characters to add
+        getline(cin,pos);
+        cout<< "enter text to be inserted at position : ";
+        getline(cin,userInput);
+
+        ifstream ifs(textFileName.c_str());
+        string content( (std::istreambuf_iterator<char>(ifs) ),
+                       (std::istreambuf_iterator<char>()    ) );
+        int posConvert =atoi(pos.c_str());
+        content.insert(posConvert, userInput.c_str());
+        remove(textFileName.c_str());//remove the text file
+        outfile.open(textFileName.c_str());//recreate the file
+        outfile << content;//text which gets appended
+        outfile.close();
+        return "text as been inserted";
         }
+
         else if (commandCatcher == "remove"){//check if the command is remove
             remove(textFileName.c_str());//remove the text file
             outfile.open(textFileName.c_str());//recreate the file
+            return "The text has been removed";
         }
 
         else if (commandCatcher == "display"){//check if the command is display
@@ -82,13 +102,14 @@ string textModification(string command, string path){
               outFile >> name ;
               cout << name << endl;
         }
+        return "";
         }
         else{
             cout << "Not valid";
         }
 
 
-        return " ";
+        return "Invalid Command. Please use modify -h for help";
 }
 
 

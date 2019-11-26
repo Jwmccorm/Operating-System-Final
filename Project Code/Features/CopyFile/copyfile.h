@@ -1,13 +1,15 @@
 #include<iostream>
 #include<string>
 #include <fstream>
+#include <unistd.h>
+#include<stdlib.h>
 using namespace std;
 
 
 string copyFile(string command, string directoryString){
     int i;
     if (!command.compare("-h")){
-        return "To use the copy command:  \"copy file.extension CopyName\"";
+        return "To use the copy command:  \"copy file.extension CopyName\"\n";
     }
     else{
         bool complete;
@@ -36,7 +38,7 @@ string copyFile(string command, string directoryString){
                 newFileName += command[i];
             }
         }
-
+        FILE *file = fopen((directoryString +  "\\"+ originalFileName + originalFileExtention).c_str(), "r");
         if (spaceCount == 0){
             return "ERROR: Must contain a space to separate copy file name - Use \"copy -h\" for help!";
         }
@@ -45,6 +47,9 @@ string copyFile(string command, string directoryString){
         }
         else if (!originalFileName.compare(newFileName)){
             return "ERROR: The two files can not have the same name! - Use  \"copy -h\" for help!";
+        }
+        else if(!file){
+            return "Unable to find file - Use  \"copy -h\" for help!\n";
         }
         else{
             string ogName = originalFileName;

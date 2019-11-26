@@ -6,11 +6,14 @@
 //  0507425
 
 using namespace std;
-
-int main()
+int main(int argc, char** argv)
 {
 
-    string returnValue = copyFile("text.txt swag");
+  std::ifstream ifs("myfile.txt");
+  std::string content( (std::istreambuf_iterator<char>(ifs) ),
+                       (std::istreambuf_iterator<char>()    ) );
 
-    cout << returnValue;
+  content.insert(1, "penis");
+  cout << content;
+  return 0;
 }
