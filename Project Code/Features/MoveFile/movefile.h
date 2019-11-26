@@ -8,8 +8,8 @@ using namespace std;
 
 string moveFile(string command, string path){
 
-    if(!command.compare("-h ")) {
-        return "\tTo use the move command: \"move file.extension \"\n\tThen cd to destination directory...\n";
+    if(!command.compare("-h")) {
+        return "To use the move command: \"move file.extension \"\nThen cd to destination directory...\n";
     }
 
     int i = 0;

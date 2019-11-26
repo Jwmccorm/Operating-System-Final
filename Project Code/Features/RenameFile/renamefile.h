@@ -10,6 +10,9 @@ using namespace std;
 // function to rename the desired file in the current directory
 string renameFile(string command, string path)
 {
+    if(!command.compare("-h")) {
+        return "To use the rename command: \"rename file.extension newFileName\"";
+    }
     //local declarations and assignments
     int tempInt;
     string originalFileName;

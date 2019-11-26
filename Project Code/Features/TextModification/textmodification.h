@@ -5,7 +5,7 @@ using namespace std;
 string textModification(string command, string path){
         if (command == "-h"){//check if user asked for help
 
-            cout << "This is the help options\n Use append command to add text. \n Use insert command to add text at a particular location.\n Use remove command to clear the file.\n Use Display command to display the content of the file";//some of the commands used in the program
+            return  "Use append: \"modify append fileName.extension\"\nUse insert: \"modify insert fileName.extension\"\nUse remove: : \"modify remove fileName.extension\"\nUse Display : : \"modify display fileName.extension\"";//some of the commands used in the program
         }
         bool complete;
         string commandCatcher;//just to check for commands

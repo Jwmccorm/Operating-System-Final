@@ -11,6 +11,9 @@ using namespace std;
 
 
 string deleteFile(string command, string directoryString){
+    if (!command.compare("-h")){
+        return "To use the delete command:  \"delete file.extension\"";
+    }
     int status;
     char file_name[100];
     string fileAndExtention = directoryString  +"\\"+ command;
@@ -22,7 +25,5 @@ string deleteFile(string command, string directoryString){
 
     }
     else
-        printf("\nDid you Entered the Right File Name !");
-
         return "File is Deleted Successfully";
 }
