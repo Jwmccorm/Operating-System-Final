@@ -51,7 +51,7 @@ string textModification(string command, string path){
         string str2;
         if (commandCatcher == "append"){//check if the user wants to append
             cout<< "enter text to be inserted at the end"<<endl;//prompt user for thext to apppend
-            cin.ignore();//ignoring the spaces
+            //cin.ignore();//ignoring the spaces
             getline(cin,str1);//taking the whole string as input
 
             //cout << str1;
