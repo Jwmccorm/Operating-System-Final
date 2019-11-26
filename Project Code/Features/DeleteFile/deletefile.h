@@ -15,15 +15,25 @@ string deleteFile(string command, string directoryString){
         return "To use the delete command:  \"delete file.extension\"";
     }
     int status;
+        string fileAndExtention = directoryString  +"\\"+ command;
+
+        FILE *file = fopen((fileAndExtention).c_str(), "r");
+   if(!file){
+            return "Unable to find file - Use  \"copy -h\" for help!\n";
+        }
+    else{
+           fclose(file);
+
+    }
     char file_name[100];
-    string fileAndExtention = directoryString  +"\\"+ command;
+
+
     status = remove(fileAndExtention.c_str());
 
     if(file_name==0)
     {
-        printf("\n File is Deleted Successfully ");
-
+        return "Unable to locate file";
     }
     else
-        return "File is Not Found, Unable To Delete";
+        return "File has been deleted";
 }

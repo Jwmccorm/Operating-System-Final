@@ -80,6 +80,10 @@ string textModification(string command, string path){
         string content( (std::istreambuf_iterator<char>(ifs) ),
                        (std::istreambuf_iterator<char>()    ) );
         int posConvert =atoi(pos.c_str());
+
+        if (posConvert > content.length()){
+            return "Sorry too large of a insert index. Exceeds files";
+        }
         content.insert(posConvert, userInput.c_str());
         remove(textFileName.c_str());//remove the text file
         outfile.open(textFileName.c_str());//recreate the file
