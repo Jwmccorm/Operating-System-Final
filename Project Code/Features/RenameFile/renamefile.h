@@ -25,6 +25,7 @@ string renameFile(string command, string path)
         {
             // increment spaceCount is there is space
             spaceCount += 1;
+            // skip the rest steps and go to next loop
             continue;
         }
         // if the dotcount is more than 1, display the messasge to use help
@@ -47,12 +48,12 @@ string renameFile(string command, string path)
         {
             originalFileName += command[i];
         }
-        // if no space and dot is one then save the extension
+        // if no space and dot is one then dot put the content in the original file extension including dot
         if (spaceCount == 0 && dotCount == 1)
         {
             originalFileExtention += command[i];
         }
-        // is space is one then , new file = command[i]
+        // is space is one then , rest of the string contain is newFile name
         if(spaceCount == 1)
         {
             newFileName += command[i];
@@ -68,7 +69,11 @@ string renameFile(string command, string path)
     {
         cout<<"Rename Successful"<<endl;
     }
+    // if temptInt is not 0-- display rename unsuccessful message
+    else
+        cout<<"Sorry Something went wrong. Rename was not successful"<<endl;
 
+    // return to main
     return " ";
 
 }
