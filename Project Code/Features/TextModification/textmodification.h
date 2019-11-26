@@ -1,7 +1,7 @@
 #include<iostream>
 using namespace std;
 
-
+#include<string>
 string textModification(string command, string path){
         if (command == "-h"){//check if user asked for help
 
@@ -45,7 +45,7 @@ string textModification(string command, string path){
         string str1;// stored the user input to append
         string name;//used for displaying the text
         std::ofstream outfile;//std ofstream for tracking the file
-        fstream fs ("test.txt", ios::in | ios::out);//adding text at specific location
+        fstream fs (textFileName.c_str(), ios::in | ios::out);//adding text at specific location
         fs.seekg (0, ios::end);//start seeking from character 0
         streamoff position = fs.tellg();//gets the total characters i.e. size of the file
         string str2;
@@ -70,12 +70,12 @@ string textModification(string command, string path){
         fs.write ("Hey we added text at specific position ",position);// This is the text to be inserted with how many characters to add
         }
         else if (commandCatcher == "remove"){//check if the command is remove
-            remove("test.txt");//remove the text file
-            outfile.open("test.txt");//recreate the file
+            remove(textFileName.c_str());//remove the text file
+            outfile.open(textFileName.c_str());//recreate the file
         }
 
         else if (commandCatcher == "display"){//check if the command is display
-                    std::ifstream outFile("test.txt");//takes in the test.txt file for display
+                    std::ifstream outFile(textFileName.c_str());//takes in the test.txt file for display
 
                 while (!outFile.fail() && !outFile.eof() )//ignores the end of line
         {
@@ -90,3 +90,18 @@ string textModification(string command, string path){
 
         return " ";
 }
+
+
+
+void printCat(){
+
+printf("                       /)        \n");
+printf("              /\\___/\\ ((         \n");
+printf("              \\`o_o'/  ))        \n");
+printf("              {_:Y:.}_//         \n");
+printf("  ------------{_}---{_}------------\n");
+printf(" Welcome! Please Input Instructions   \n");
+printf("  ---------------------------------\n");
+
+}
+

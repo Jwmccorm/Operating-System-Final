@@ -12,10 +12,11 @@
 using namespace std;
 
 int main(){
+
+    printCat();
     /*
         This fist section is just for user input of the string
     */
-    cout << "Welcome! Please Input Instructions" << endl;
     string path = current_working_directory();
     DIR *dr = opendir(path.c_str());
     string command;
