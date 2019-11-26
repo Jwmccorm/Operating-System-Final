@@ -25,5 +25,5 @@ string deleteFile(string command, string directoryString){
 
     }
     else
-        return "File is Deleted Successfully";
+        return "File is Not Found, Unable To Delete";
 }
