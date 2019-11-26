@@ -15,7 +15,7 @@ int main(){
     /*
         This fist section is just for user input of the string
     */
-    cout << "Welcome! Please Input Instructions" << endl;
+    cout << "Welcome! Please Input Instructions. Type -h for help" << endl;
     string path = current_working_directory();
     DIR *dr = opendir(path.c_str());
     string command;
@@ -31,7 +31,16 @@ int main(){
         getline(cin, userInput);
 
         if (!userInput.compare("-h")){
-            cout << "THIS WILL DISPLAY THE HELP OPTIONS" << endl;
+            cout << "\nThank you for asking for help! Here are the valid commands\n" << endl;
+            cout << copyFile("-h", path) +"\n"<< endl;
+            cout << deleteFile("-h", path) +"\n"<< endl;
+            cout << moveFile("-h", path) << endl;
+            cout << createFile("-h", path) +"\n"<< endl;
+            cout << renameFile("-h", path)+"\n" << endl;
+            cout << textModification("-h", path) +"\n" << endl;
+            cout << "To list folders and files use \"dir\"" <<endl;
+            cout << "To go up a directory use \"cd ..\"" <<endl;
+            cout << "To change to a specific folder us \"cd FOLDERNAME\"" <<endl;
             continue;
         }
         else if(!userInput.compare("exit")){

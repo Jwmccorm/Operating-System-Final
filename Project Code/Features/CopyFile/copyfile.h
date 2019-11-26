@@ -47,13 +47,14 @@ string copyFile(string command, string directoryString){
             return "ERROR: The two files can not have the same name! - Use  \"copy -h\" for help!";
         }
         else{
+            string ogName = originalFileName;
+            string newName = newFileName;
             originalFileName =  directoryString +  "\\"+ originalFileName + originalFileExtention;
             newFileName= directoryString + "\\"+ newFileName + originalFileExtention;
-            cout << newFileName << endl;
             ifstream  src(originalFileName.c_str(), ios::binary);
             ofstream  dst(newFileName.c_str(),   ios::binary);
             dst << src.rdbuf();
-            return "";//originalFileName + " now has a copy called " + newFileName << endl;
+            return ogName + " now has a copy called " + newName + "\n";
 
         }
 
