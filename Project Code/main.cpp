@@ -12,8 +12,6 @@
 using namespace std;
 
 int main(){
-
-    printCat();
     /*
         This fist section is just for user input of the string
     */
@@ -31,8 +29,11 @@ int main(){
 
         //      Catching help command off of root
         getline(cin, userInput);
-
-        if (!userInput.compare("-h")){
+        if (!userInput.compare("cat")) {
+            printCat();
+            command = "cat";
+        }
+        else if (!userInput.compare("-h")){
             cout << "\nThank you for asking for help! Here are the valid commands\n" << endl;
             cout << copyFile("-h", path) +"\n"<< endl;
             cout << deleteFile("-h", path) +"\n"<< endl;
@@ -42,7 +43,7 @@ int main(){
             cout << textModification("-h", path) +"\n" << endl;
             cout << "To list folders and files use \"dir\"" <<endl;
             cout << "To go up a directory use \"cd ..\"" <<endl;
-            cout << "To change to a specific folder us \"cd FOLDERNAME\"" <<endl;
+            cout << "To change to a specific folder us \"cd FOLDERNAME\"\n" <<endl;
             continue;
         }
         else if(!userInput.compare("exit")){
@@ -69,7 +70,7 @@ int main(){
         else if (!command.compare("create")) cout << createFile(remainder, path) << endl;
         else if (!command.compare("rename")) cout << renameFile(remainder, path) << endl;
         else if (!command.compare("modify")) cout << textModification(remainder, path) << endl;
-        else if (!command.compare("-h"));
+        else if (!command.compare("-h") || !command.compare("cat"));
         else if (!command.compare("cd"))  path = directoryChange(remainder, path);
         else if (!command.compare("dir")) changeDirectory(path);
         else{
