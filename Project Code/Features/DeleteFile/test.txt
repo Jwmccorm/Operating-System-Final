@@ -1,0 +1,3 @@
+DeleteFile 
+When you run the code, it will take you to the main directory file from which you can open the file you want from the main directory. If searchable file doesn't exist it will show that Unable to find the file.
+Once it will find the file you are looking for then you are good to go to delete it. Once you delete it it will give you the output that File has been deleted. Thank you
