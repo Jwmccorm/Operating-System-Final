@@ -35,11 +35,9 @@ string moveFile(string command, string path){
         }
     }
     fileName = originalFileName + originalFileExtention;
-
-    if (spaceCount == 0){
-        return "ERROR: Must contain a space to separate file name - Use \"move -h \" for help!\n";
-    }
-    else if (dotCount == 0) {
+    string originalPathAndFile = path + "\\" + originalFileName + originalFileExtention;
+    cout << originalPathAndFile << endl;
+    if (dotCount == 0) {
         return "ERROR: Must specify the file's extension - Use \"move -h \" for help!\n";
     }
     else if(spaceCount > 1){
@@ -82,7 +80,7 @@ string moveFile(string command, string path){
                 ofstream  dst(newFileName.c_str(), ios::binary);
                 dst << src.rdbuf();
                 cout << "file moved successfully\n";
-                break;
+                return "Move Complete!\n";
             }
             else{
                 cout << "Invalid Command, use \"-h\" for help!" << endl;

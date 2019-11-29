@@ -64,9 +64,9 @@ int main(){
         /*
             Bulk of the information for the problem it self, use this to link up commands.
         */
-        if  (!command.compare("copy")) cout << copyFile(remainder, path);
+        if  (!command.compare("copy")) cout << copyFile(remainder, path) << endl;
         else if (!command.compare("delete"))cout << deleteFile(remainder, path) << endl;
-        else if (!command.compare("move")) cout << moveFile(remainder, path);
+        else if (!command.compare("move")) cout << moveFile(remainder, path) << endl;
         else if (!command.compare("create")) cout << createFile(remainder, path) << endl;
         else if (!command.compare("rename")) cout << renameFile(remainder, path) << endl;
         else if (!command.compare("modify")) cout << textModification(remainder, path) << endl;
